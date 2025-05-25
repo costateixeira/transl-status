@@ -1,19 +1,19 @@
-language,file,translated,fuzzy,untranslated,total,pct_translated,pct_fuzzy,pct_untranslated
-es,rendering-phrases,5,0,1075,1080,0.5,0.0,99.5
-es,validator-messages,697,0,643,1340,52.0,0.0,48.0
-ja,rendering-phrases,20,0,1060,1080,1.9,0.0,98.1
-ja,validator-messages,871,0,469,1340,65.0,0.0,35.0
-pt,validator-messages,1305,0,35,1340,97.4,0.0,2.6
-pt,rendering-phrases,998,0,82,1080,92.4,0.0,7.6
-pt_BR,rendering-phrases,0,0,1080,1080,0.0,0.0,100.0
-pt_BR,validator-messages,0,0,1340,1340,0.0,0.0,100.0
-nl,validator-messages,1331,0,9,1340,99.3,0.0,0.7
-nl,rendering-phrases,963,0,117,1080,89.2,0.0,10.8
-fr,validator-messages,0,0,1340,1340,0.0,0.0,100.0
-fr,rendering-phrases,299,0,781,1080,27.7,0.0,72.3
-ru,validator-messages,0,0,1340,1340,0.0,0.0,100.0
-ru,rendering-phrases,0,0,1080,1080,0.0,0.0,100.0
-de,rendering-phrases,5,0,1075,1080,0.5,0.0,99.5
-de,validator-messages,823,0,517,1340,61.4,0.0,38.6
-en,validator-messages,0,0,1340,1340,0.0,0.0,100.0
-en,rendering-phrases,0,0,1080,1080,0.0,0.0,100.0
+source,file,language,translated,fuzzy,untranslated,total,pct_translated,pct_fuzzy,pct_untranslated
+HAPI FHIR Core libraries,rendering-phrases,es,5,0,1075,1080,0.5,0.0,99.5
+HAPI FHIR Core libraries,rendering-phrases,ja,20,0,1060,1080,1.9,0.0,98.1
+HAPI FHIR Core libraries,validator-messages,pt,1305,0,35,1340,97.4,0.0,2.6
+HAPI FHIR Core libraries,rendering-phrases,pt_BR,0,0,1080,1080,0.0,0.0,100.0
+HAPI FHIR Core libraries,validator-messages,nl,1331,0,9,1340,99.3,0.0,0.7
+HAPI FHIR Core libraries,validator-messages,pt_BR,0,0,1340,1340,0.0,0.0,100.0
+HAPI FHIR Core libraries,validator-messages,fr,0,0,1340,1340,0.0,0.0,100.0
+HAPI FHIR Core libraries,rendering-phrases,fr,299,0,781,1080,27.7,0.0,72.3
+HAPI FHIR Core libraries,rendering-phrases,nl,963,0,117,1080,89.2,0.0,10.8
+HAPI FHIR Core libraries,validator-messages,ru,0,0,1340,1340,0.0,0.0,100.0
+HAPI FHIR Core libraries,rendering-phrases,de,5,0,1075,1080,0.5,0.0,99.5
+HAPI FHIR Core libraries,validator-messages,en,0,0,1340,1340,0.0,0.0,100.0
+HAPI FHIR Core libraries,validator-messages,ja,871,0,469,1340,65.0,0.0,35.0
+HAPI FHIR Core libraries,validator-messages,de,823,0,517,1340,61.4,0.0,38.6
+HAPI FHIR Core libraries,rendering-phrases,ru,0,0,1080,1080,0.0,0.0,100.0
+HAPI FHIR Core libraries,rendering-phrases,en,0,0,1080,1080,0.0,0.0,100.0
+HAPI FHIR Core libraries,rendering-phrases,pt,954,45,81,1080,88.3,4.2,7.5
+HAPI FHIR Core libraries,validator-messages,es,697,0,643,1340,52.0,0.0,48.0

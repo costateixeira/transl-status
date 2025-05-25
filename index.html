@@ -1,85 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Translation Dashboard</title>
+  <meta charset="UTF-8">
+  <title>FHIR Translation Dashboard</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    select { margin-right: 1em; }
+    table { border-collapse: collapse; width: 100%; margin-top: 2em; }
+    th, td { border: 1px solid #ccc; padding: 0.4em; text-align: center; }
+    th { background-color: #eee; }
+  </style>
 </head>
-<body style="font-family:sans-serif; margin: 20px;">
-  <h1>Translation Coverage by Language</h1>
-  <div id="chart"></div>
+<body>
+  <h1>FHIR Translation Dashboard</h1>
 
-  <h2>Detailed Table</h2>
-  <table id="data-table" border="1" cellpadding="4" style="border-collapse: collapse; margin-top: 1em;"></table>
+  <div>
+    <label for="source">Source:</label>
+    <select id="source"></select>
 
-  <p style="margin-top:1em">
-    <a href="stats.json" download>📥 Download JSON</a> |
-    <a href="stats.csv" download>📥 Download CSV</a>
-  </p>
+    <label for="file">File:</label>
+    <select id="file"></select>
+
+    <label for="language">Language:</label>
+    <select id="language"></select>
+  </div>
+
+  <div id="chart" style="margin-top: 2em;"></div>
+  <table id="data-table"></table>
 
   <script>
+    let rawData = [];
+
     fetch("stats.json")
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
-        const langTotals = {};
-        data.forEach(row => {
-          const lang = row.language;
-          if (!langTotals[lang]) langTotals[lang] = {translated: 0, fuzzy: 0, untranslated: 0};
-          langTotals[lang].translated += row.translated;
-          langTotals[lang].fuzzy += row.fuzzy;
-          langTotals[lang].untranslated += row.untranslated;
-        });
-
-        const languages = Object.keys(langTotals).sort();
-        const translated = languages.map(l => langTotals[l].translated);
-        const fuzzy = languages.map(l => langTotals[l].fuzzy);
-        const untranslated = languages.map(l => langTotals[l].untranslated);
-
-        const total = languages.map((_, i) => translated[i] + fuzzy[i] + untranslated[i]);
-
-        Plotly.newPlot('chart', [
-          {
-            x: languages, y: translated, name: 'Translated', type: 'bar', marker: {color: 'green'},
-            customdata: total.map((t, i) => (t ? Math.round(100 * translated[i] / t) : 0)),
-            hovertemplate: '%{y} translated (%{customdata}%)'
-          },
-          {
-            x: languages, y: fuzzy, name: 'Fuzzy', type: 'bar', marker: {color: 'orange'},
-            customdata: total.map((t, i) => (t ? Math.round(100 * fuzzy[i] / t) : 0)),
-            hovertemplate: '%{y} fuzzy (%{customdata}%)'
-          },
-          {
-            x: languages, y: untranslated, name: 'Untranslated', type: 'bar', marker: {color: 'red'},
-            customdata: total.map((t, i) => (t ? Math.round(100 * untranslated[i] / t) : 0)),
-            hovertemplate: '%{y} untranslated (%{customdata}%)'
-          }
-        ], {
-          barmode: 'stack',
-          xaxis: {title: 'Language'},
-          yaxis: {title: 'Entries'},
-          hovermode: 'closest'
-        });
-
-        const table = document.getElementById("data-table");
-        const headers = Object.keys(data[0]);
-        const headRow = document.createElement("tr");
-        headers.forEach(h => {
-          const th = document.createElement("th");
-          th.textContent = h;
-          headRow.appendChild(th);
-        });
-        table.appendChild(headRow);
-
-        data.forEach(row => {
-          const tr = document.createElement("tr");
-          headers.forEach(h => {
-            const td = document.createElement("td");
-            td.textContent = row[h];
-            tr.appendChild(td);
-          });
-          table.appendChild(tr);
-        });
+        rawData = data;
+        populateFilters();
+        render();
       });
+
+    function populateFilters() {
+      const sources = [...new Set(rawData.map(r => r.source))].sort();
+      const files = [...new Set(rawData.map(r => r.file))].sort();
+      const langs = [...new Set(rawData.map(r => r.language))].sort();
+
+      setOptions("source", sources);
+      setOptions("file", files);
+      setOptions("language", langs);
+    }
+
+    function setOptions(id, values) {
+      const select = document.getElementById(id);
+      select.innerHTML = `<option value="">All</option>` + values.map(v => `<option>${v}</option>`).join("");
+      select.addEventListener("change", render);
+    }
+
+    function render() {
+      const source = document.getElementById("source").value;
+      const file = document.getElementById("file").value;
+      const language = document.getElementById("language").value;
+
+      const filtered = rawData.filter(row =>
+        (!source || row.source === source) &&
+        (!file || row.file === file) &&
+        (!language || row.language === language)
+      );
+
+      const grouped = {};
+      for (const row of filtered) {
+        const key = row.language;
+        if (!grouped[key]) grouped[key] = { translated: 0, fuzzy: 0, untranslated: 0, total: 0 };
+        grouped[key].translated += row.translated;
+        grouped[key].fuzzy += row.fuzzy;
+        grouped[key].untranslated += row.untranslated;
+      }
+
+      const languages = Object.keys(grouped).sort();
+      const translated = languages.map(l => grouped[l].translated);
+      const fuzzy = languages.map(l => grouped[l].fuzzy);
+      const untranslated = languages.map(l => grouped[l].untranslated);
+      const total = languages.map(l => translated[l] + fuzzy[l] + untranslated[l]);
+
+      const traces = [
+        {
+          x: languages, y: translated, name: "Translated", type: "bar", marker: { color: "green" },
+          customdata: languages.map(l => grouped[l].translated + grouped[l].fuzzy + grouped[l].untranslated),
+          hovertemplate: "%{y} translated"
+        },
+        {
+          x: languages, y: fuzzy, name: "Fuzzy", type: "bar", marker: { color: "orange" },
+          hovertemplate: "%{y} fuzzy"
+        },
+        {
+          x: languages, y: untranslated, name: "Untranslated", type: "bar", marker: { color: "red" },
+          hovertemplate: "%{y} untranslated"
+        }
+      ];
+
+      Plotly.newPlot("chart", traces, {
+        barmode: "stack",
+        title: "Translation Status by Language",
+        xaxis: { title: "Language" },
+        yaxis: { title: "Number of Entries" }
+      });
+
+      // Table
+      const table = document.getElementById("data-table");
+      table.innerHTML = "";
+      const headers = ["Source", "File", "Language", "Translated", "Fuzzy", "Untranslated", "Total", "% Translated"];
+      const thead = document.createElement("thead");
+      thead.innerHTML = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const row of filtered) {
+        const pct = row.total ? ((100 * row.translated / row.total).toFixed(1) + "%") : "";
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.source}</td>
+          <td>${row.file}</td>
+          <td>${row.language}</td>
+          <td>${row.translated}</td>
+          <td>${row.fuzzy}</td>
+          <td>${row.untranslated}</td>
+          <td>${row.total}</td>
+          <td>${pct}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+    }
   </script>
 </body>
 </html>
