@@ -17,6 +17,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Pre-fetch actions/upload-artifact@v4 (fix for v3 issue)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dummy
+          path: README.md
+        if: false  # skip execution, only preload action
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -52,6 +59,14 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
+
+      - name: Pre-fetch actions/upload-artifact@v4 (fix for v3 issue)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dummy
+          path: README.md
+        if: false  # skip execution, only preload action
+        
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v2
@@ -61,6 +76,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      
+      - name: Pre-fetch actions/upload-artifact@v4 (fix for v3 issue)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dummy
+          path: README.md
+        if: false  # skip execution, only preload action
+          
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
