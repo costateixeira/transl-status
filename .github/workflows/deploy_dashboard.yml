@@ -18,18 +18,18 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install polib
+      # - name: Install dependencies
+      #   run: |
+      #     pip install polib
 
-      - name: Clone HL7 FHIR Core Repository (Sparse Checkout)
-        run: |
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/costateixeira/org.hl7.fhir.core.git fhir-core
-          cd fhir-core
-          git sparse-checkout set org.hl7.fhir.utilities/src/main/resources/source
-          cd ..
-          mkdir -p translation-status/po_files
-          cp fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po translation-status/po_files/
+      # - name: Clone HL7 FHIR Core Repository (Sparse Checkout)
+      #   run: |
+      #     git clone --depth 1 --filter=blob:none --sparse https://github.com/costateixeira/org.hl7.fhir.core.git fhir-core
+      #     cd fhir-core
+      #     git sparse-checkout set org.hl7.fhir.utilities/src/main/resources/source
+      #     cd ..
+      #     mkdir -p translation-status/po_files
+      #     cp fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po translation-status/po_files/
 
 
       - name: Install dependencies
@@ -48,8 +48,7 @@ jobs:
       - name: Build stats from sources
         run: |
           python translation-status/build_stats.py \
-            --source translation-status/po_files:HAPI FHIR Core libraries
-
+            --config translation-status/sources.yaml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
