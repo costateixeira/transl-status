@@ -29,16 +29,19 @@
   <div id="chart" style="margin-top: 2em;"></div>
   <table id="data-table"></table>
 
+<p id="updated" style="color: #555; font-style: italic;"></p>
+
   <script>
     let rawData = [];
 
     fetch("stats.json")
-      .then(res => res.json())
-      .then(data => {
-        rawData = data;
+    .then(res => res.json())
+    .then(data => {
+        rawData = data.records;
+        document.getElementById("updated").textContent = "Last updated: " + data.generated_at;
         populateFilters();
         render();
-      });
+    });
 
     function populateFilters() {
       const sources = [...new Set(rawData.map(r => r.source))].sort();
