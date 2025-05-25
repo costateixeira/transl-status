@@ -2,6 +2,7 @@ import os
 import polib
 import json
 import csv
+import yaml
 import argparse
 from collections import defaultdict
 
@@ -53,17 +54,20 @@ def write_csv(data, outpath):
         writer.writerows(data)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Build translation stats from one or more sources.")
-    parser.add_argument('--source', action='append', required=True,
-                        help='Format: <folder>:<label>. Example: po_files:HAPI FHIR Core')
+    parser = argparse.ArgumentParser(description="Build translation stats from YAML config.")
+    parser.add_argument('--config', required=True, help='YAML file with sources')
     parser.add_argument('--output', default='translation-status/dashboard', help='Output folder')
     args = parser.parse_args()
 
+    with open(args.config) as f:
+        config = yaml.safe_load(f)
+
     all_stats = []
-    for source in args.source:
-        folder, label = source.split(':', 1)
+    for source in config.get('sources', []):
+        folder = source['local']
+        label = source['label']
         if not os.path.isdir(folder):
-            print(f"Warning: folder '{folder}' not found, skipping.")
+            print(f"⚠️ Warning: folder '{folder}' not found, skipping.")
             continue
         stats = collect_stats(folder, label)
         all_stats.extend(stats)
