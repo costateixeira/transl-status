@@ -36,6 +36,7 @@ jobs:
           python translation-status/build_stats.py \
             --source translation-status/po_files:HAPI FHIR Core libraries
 
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
