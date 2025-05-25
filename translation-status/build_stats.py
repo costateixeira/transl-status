@@ -4,6 +4,8 @@ import json
 import csv
 import yaml
 import argparse
+import datetime
+
 from collections import defaultdict
 
 def collect_stats(po_root, label):
@@ -71,6 +73,14 @@ if __name__ == "__main__":
             continue
         stats = collect_stats(folder, label)
         all_stats.extend(stats)
+
+
+    timestamp = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+
+    output_data = {
+        "generated_at": timestamp,
+        "records": all_stats
+    }
 
     os.makedirs(args.output, exist_ok=True)
     write_json(all_stats, os.path.join(args.output, 'stats.json'))
