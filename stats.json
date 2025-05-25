@@ -1,0 +1,200 @@
+[
+  {
+    "language": "es",
+    "file": "rendering-phrases",
+    "translated": 5,
+    "fuzzy": 0,
+    "untranslated": 1075,
+    "total": 1080,
+    "pct_translated": 0.5,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 99.5
+  },
+  {
+    "language": "es",
+    "file": "validator-messages",
+    "translated": 697,
+    "fuzzy": 0,
+    "untranslated": 643,
+    "total": 1340,
+    "pct_translated": 52.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 48.0
+  },
+  {
+    "language": "ja",
+    "file": "rendering-phrases",
+    "translated": 20,
+    "fuzzy": 0,
+    "untranslated": 1060,
+    "total": 1080,
+    "pct_translated": 1.9,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 98.1
+  },
+  {
+    "language": "ja",
+    "file": "validator-messages",
+    "translated": 871,
+    "fuzzy": 0,
+    "untranslated": 469,
+    "total": 1340,
+    "pct_translated": 65.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 35.0
+  },
+  {
+    "language": "pt",
+    "file": "validator-messages",
+    "translated": 1305,
+    "fuzzy": 0,
+    "untranslated": 35,
+    "total": 1340,
+    "pct_translated": 97.4,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 2.6
+  },
+  {
+    "language": "pt",
+    "file": "rendering-phrases",
+    "translated": 998,
+    "fuzzy": 0,
+    "untranslated": 82,
+    "total": 1080,
+    "pct_translated": 92.4,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 7.6
+  },
+  {
+    "language": "pt_BR",
+    "file": "rendering-phrases",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1080,
+    "total": 1080,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "pt_BR",
+    "file": "validator-messages",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1340,
+    "total": 1340,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "nl",
+    "file": "validator-messages",
+    "translated": 1331,
+    "fuzzy": 0,
+    "untranslated": 9,
+    "total": 1340,
+    "pct_translated": 99.3,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 0.7
+  },
+  {
+    "language": "nl",
+    "file": "rendering-phrases",
+    "translated": 963,
+    "fuzzy": 0,
+    "untranslated": 117,
+    "total": 1080,
+    "pct_translated": 89.2,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 10.8
+  },
+  {
+    "language": "fr",
+    "file": "validator-messages",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1340,
+    "total": 1340,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "fr",
+    "file": "rendering-phrases",
+    "translated": 299,
+    "fuzzy": 0,
+    "untranslated": 781,
+    "total": 1080,
+    "pct_translated": 27.7,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 72.3
+  },
+  {
+    "language": "ru",
+    "file": "validator-messages",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1340,
+    "total": 1340,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "ru",
+    "file": "rendering-phrases",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1080,
+    "total": 1080,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "de",
+    "file": "rendering-phrases",
+    "translated": 5,
+    "fuzzy": 0,
+    "untranslated": 1075,
+    "total": 1080,
+    "pct_translated": 0.5,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 99.5
+  },
+  {
+    "language": "de",
+    "file": "validator-messages",
+    "translated": 823,
+    "fuzzy": 0,
+    "untranslated": 517,
+    "total": 1340,
+    "pct_translated": 61.4,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 38.6
+  },
+  {
+    "language": "en",
+    "file": "validator-messages",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1340,
+    "total": 1340,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  },
+  {
+    "language": "en",
+    "file": "rendering-phrases",
+    "translated": 0,
+    "fuzzy": 0,
+    "untranslated": 1080,
+    "total": 1080,
+    "pct_translated": 0.0,
+    "pct_fuzzy": 0.0,
+    "pct_untranslated": 100.0
+  }
+]

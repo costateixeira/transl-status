@@ -8,45 +8,78 @@
 <body style="font-family:sans-serif; margin: 20px;">
   <h1>Translation Coverage by Language</h1>
   <div id="chart"></div>
+
+  <h2>Detailed Table</h2>
+  <table id="data-table" border="1" cellpadding="4" style="border-collapse: collapse; margin-top: 1em;"></table>
+
+  <p style="margin-top:1em">
+    <a href="stats.json" download>📥 Download JSON</a> |
+    <a href="stats.csv" download>📥 Download CSV</a>
+  </p>
+
   <script>
-    const data = [
-      {
-        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
-        y: [828, 0, 702, 299, 891, 2294, 2303, 0, 0],
-        name: 'Translated',
-        type: 'bar',
-        marker: {color: 'green'},
-        hovertemplate: '%{y} translated (%{customdata}%)',
-        customdata: [34, 0, 29, 12, 37, 95, 95, 0, 0]
-      },
-      {
-        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
-        y: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        name: 'Fuzzy',
-        type: 'bar',
-        marker: {color: 'orange'},
-        hovertemplate: '%{y} fuzzy (%{customdata}%)',
-        customdata: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-      },
-      {
-        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
-        y: [1592, 2420, 1718, 2121, 1529, 126, 117, 2420, 2420],
-        name: 'Untranslated',
-        type: 'bar',
-        marker: {color: 'red'},
-        hovertemplate: '%{y} untranslated (%{customdata}%)',
-        customdata: [66, 100, 71, 88, 63, 5, 5, 100, 100]
-      }
-    ];
+    fetch("stats.json")
+      .then(response => response.json())
+      .then(data => {
+        const langTotals = {};
+        data.forEach(row => {
+          const lang = row.language;
+          if (!langTotals[lang]) langTotals[lang] = {translated: 0, fuzzy: 0, untranslated: 0};
+          langTotals[lang].translated += row.translated;
+          langTotals[lang].fuzzy += row.fuzzy;
+          langTotals[lang].untranslated += row.untranslated;
+        });
 
-    const layout = {
-      barmode: 'stack',
-      xaxis: {title: 'Language'},
-      yaxis: {title: 'Number of Entries'},
-      hovermode: 'closest'
-    };
+        const languages = Object.keys(langTotals).sort();
+        const translated = languages.map(l => langTotals[l].translated);
+        const fuzzy = languages.map(l => langTotals[l].fuzzy);
+        const untranslated = languages.map(l => langTotals[l].untranslated);
 
-    Plotly.newPlot('chart', data, layout);
+        const total = languages.map((_, i) => translated[i] + fuzzy[i] + untranslated[i]);
+
+        Plotly.newPlot('chart', [
+          {
+            x: languages, y: translated, name: 'Translated', type: 'bar', marker: {color: 'green'},
+            customdata: total.map((t, i) => (t ? Math.round(100 * translated[i] / t) : 0)),
+            hovertemplate: '%{y} translated (%{customdata}%)'
+          },
+          {
+            x: languages, y: fuzzy, name: 'Fuzzy', type: 'bar', marker: {color: 'orange'},
+            customdata: total.map((t, i) => (t ? Math.round(100 * fuzzy[i] / t) : 0)),
+            hovertemplate: '%{y} fuzzy (%{customdata}%)'
+          },
+          {
+            x: languages, y: untranslated, name: 'Untranslated', type: 'bar', marker: {color: 'red'},
+            customdata: total.map((t, i) => (t ? Math.round(100 * untranslated[i] / t) : 0)),
+            hovertemplate: '%{y} untranslated (%{customdata}%)'
+          }
+        ], {
+          barmode: 'stack',
+          xaxis: {title: 'Language'},
+          yaxis: {title: 'Entries'},
+          hovermode: 'closest'
+        });
+
+        const table = document.getElementById("data-table");
+        const headers = Object.keys(data[0]);
+        const headRow = document.createElement("tr");
+        headers.forEach(h => {
+          const th = document.createElement("th");
+          th.textContent = h;
+          headRow.appendChild(th);
+        });
+        table.appendChild(headRow);
+
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          headers.forEach(h => {
+            const td = document.createElement("td");
+            td.textContent = row[h];
+            tr.appendChild(td);
+          });
+          table.appendChild(tr);
+        });
+      });
   </script>
 </body>
 </html>
