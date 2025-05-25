@@ -1,16 +1,16 @@
-name: Analyze PO Files and Deploy to gh-pages
+name: Build Translation Dashboard
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'  # every 6 hours
 
 jobs:
-  build-and-deploy:
+  build-dashboard:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -18,24 +18,26 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
-          pip install polib matplotlib
+          pip install polib
 
       - name: Clone HL7 FHIR Core Repository (Sparse Checkout)
         run: |
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/costateixeira/org.hl7.fhir.core.git hl7-fhir-core
-          cd hl7-fhir-core
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/costateixeira/org.hl7.fhir.core.git fhir-core
+          cd fhir-core
           git sparse-checkout set org.hl7.fhir.utilities/src/main/resources/source
           cd ..
-          mkdir po_files
-          cp hl7-fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po po_files/
+          mkdir -p translation-status/po_files
+          cp fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po translation-status/po_files/
 
-      - name: Run Analysis and Generate Dashboard
-        run: python analyze_po_files.py
+      - name: Build stats from sources
+        run: |
+          python translation-status/build_stats.py \
+            --source translation-status/po_files:HAPI FHIR Core libraries
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dashboard
+          publish_dir: translation-status/dashboard
