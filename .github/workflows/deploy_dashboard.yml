@@ -50,6 +50,10 @@ jobs:
           python translation-status/build_stats.py \
             --config translation-status/sources.yaml
 
+
+      - name: Show dashboard contents
+        run: ls -l translation-status/dashboard
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
