@@ -1,0 +1,57 @@
+name: Analyze PO Files and Deploy Dashboard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install polib matplotlib
+
+      - name: Clone HL7 FHIR Core Repository (Sparse Checkout)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/costateixeira/org.hl7.fhir.core.git hl7-fhir-core
+          cd hl7-fhir-core
+          git sparse-checkout set org.hl7.fhir.utilities/src/main/resources/source
+          cd ..
+          mkdir po_files
+          cp hl7-fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po po_files/
+
+      - name: Run Analysis Script
+        run: |
+          python analyze_po_files.py
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: dashboard
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v2
