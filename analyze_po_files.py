@@ -1,6 +1,6 @@
 import os
 import polib
-import matplotlib.pyplot as plt
+import json
 from collections import defaultdict
 
 PO_DIR = 'po_files'
@@ -21,33 +21,63 @@ def analyze_po_files(directory):
                     stats[lang_code]['untranslated'] += 1
     return stats
 
-def generate_dashboard_image(stats, output_path):
+def generate_dashboard_html(stats, output_path):
     languages = sorted(stats.keys())
     translated = [stats[lang]['translated'] for lang in languages]
     fuzzy = [stats[lang]['fuzzy'] for lang in languages]
     untranslated = [stats[lang]['untranslated'] for lang in languages]
-    indices = range(len(languages))
+    total = [t + f + u for t, f, u in zip(translated, fuzzy, untranslated)]
 
-    plt.figure(figsize=(12, 6))
-    plt.bar(indices, translated, label='Translated', color='green')
-    plt.bar(indices, fuzzy, bottom=translated, label='Fuzzy', color='yellow')
-    plt.bar(indices, untranslated, bottom=[t+f for t, f in zip(translated, fuzzy)], label='Untranslated', color='red')
-    plt.xticks(indices, languages)
-    plt.xlabel('Language')
-    plt.ylabel('Entries')
-    plt.title('Translation Status by Language')
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(output_path)
-    plt.close()
-
-def generate_dashboard_html(image_filename, output_path):
     html = f"""<!DOCTYPE html>
 <html>
-<head><title>Translation Dashboard</title></head>
-<body style="text-align: center;">
-<h1>Translation Coverage</h1>
-<img src="{image_filename}" alt="Dashboard">
+<head>
+  <meta charset="utf-8">
+  <title>Translation Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="font-family:sans-serif; margin: 20px;">
+  <h1>Translation Coverage by Language</h1>
+  <div id="chart"></div>
+  <script>
+    const data = [
+      {{
+        x: {languages},
+        y: {translated},
+        name: 'Translated',
+        type: 'bar',
+        marker: {{color: 'green'}},
+        hovertemplate: '%{{y}} translated (%{{customdata}}%)',
+        customdata: {[(round(t / tot * 100) if tot else 0) for t, tot in zip(translated, total)]}
+      }},
+      {{
+        x: {languages},
+        y: {fuzzy},
+        name: 'Fuzzy',
+        type: 'bar',
+        marker: {{color: 'orange'}},
+        hovertemplate: '%{{y}} fuzzy (%{{customdata}}%)',
+        customdata: {[(round(f / tot * 100) if tot else 0) for f, tot in zip(fuzzy, total)]}
+      }},
+      {{
+        x: {languages},
+        y: {untranslated},
+        name: 'Untranslated',
+        type: 'bar',
+        marker: {{color: 'red'}},
+        hovertemplate: '%{{y}} untranslated (%{{customdata}}%)',
+        customdata: {[(round(u / tot * 100) if tot else 0) for u, tot in zip(untranslated, total)]}
+      }}
+    ];
+
+    const layout = {{
+      barmode: 'stack',
+      xaxis: {{title: 'Language'}},
+      yaxis: {{title: 'Number of Entries'}},
+      hovermode: 'closest'
+    }};
+
+    Plotly.newPlot('chart', data, layout);
+  </script>
 </body>
 </html>
 """
@@ -57,5 +87,5 @@ def generate_dashboard_html(image_filename, output_path):
 if __name__ == "__main__":
     os.makedirs(DASHBOARD_DIR, exist_ok=True)
     stats = analyze_po_files(PO_DIR)
-    generate_dashboard_image(stats, os.path.join(DASHBOARD_DIR, 'index.png'))
-    generate_dashboard_html('index.png', os.path.join(DASHBOARD_DIR, 'index.html'))
+    generate_dashboard_html(stats, os.path.join(DASHBOARD_DIR, 'index.html'))
+    print("✅ Interactive dashboard written to dashboard/index.html")
