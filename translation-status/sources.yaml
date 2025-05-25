@@ -1,0 +1,5 @@
+sources:
+  - label: HAPI FHIR Core libraries
+    clone: https://github.com/costateixeira/org.hl7.fhir.core.git
+    sparse: org.hl7.fhir.utilities/src/main/resources/source
+    local: translation-status/po_files

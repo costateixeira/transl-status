@@ -31,6 +31,20 @@ jobs:
           mkdir -p translation-status/po_files
           cp fhir-core/org.hl7.fhir.utilities/src/main/resources/source/*.po translation-status/po_files/
 
+
+      - name: Install dependencies
+        run: |
+          pip install polib pyyaml
+
+      - name: Prepare sources from YAML
+        run: |
+          python translation-status/fetch_sources.py --config translation-status/sources.yaml
+
+      - name: Build stats from sources
+        run: |
+          python translation-status/build_stats.py \
+            --config translation-status/sources.yaml
+
       - name: Build stats from sources
         run: |
           python translation-status/build_stats.py \
