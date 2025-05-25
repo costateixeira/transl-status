@@ -83,6 +83,7 @@ if __name__ == "__main__":
     }
 
     os.makedirs(args.output, exist_ok=True)
-    write_json(all_stats, os.path.join(args.output, 'stats.json'))
+    write_json(output_data, os.path.join(args.output, 'stats.json'))  # ✅ FIXED HERE
     write_csv(all_stats, os.path.join(args.output, 'stats.csv'))
     print(f"✅ Wrote {len(all_stats)} records to {args.output}/stats.(json|csv)")
+
