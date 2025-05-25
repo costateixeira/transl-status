@@ -1,8 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head><title>Translation Dashboard</title></head>
-<body style="text-align: center;">
-<h1>Translation Coverage</h1>
-<img src="index.png" alt="Dashboard">
+<head>
+  <meta charset="utf-8">
+  <title>Translation Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="font-family:sans-serif; margin: 20px;">
+  <h1>Translation Coverage by Language</h1>
+  <div id="chart"></div>
+  <script>
+    const data = [
+      {
+        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
+        y: [828, 0, 702, 299, 891, 2294, 2303, 0, 0],
+        name: 'Translated',
+        type: 'bar',
+        marker: {color: 'green'},
+        hovertemplate: '%{y} translated (%{customdata}%)',
+        customdata: [34, 0, 29, 12, 37, 95, 95, 0, 0]
+      },
+      {
+        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
+        y: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        name: 'Fuzzy',
+        type: 'bar',
+        marker: {color: 'orange'},
+        hovertemplate: '%{y} fuzzy (%{customdata}%)',
+        customdata: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        x: ['de', 'en', 'es', 'fr', 'ja', 'nl', 'pt', 'pt_BR', 'ru'],
+        y: [1592, 2420, 1718, 2121, 1529, 126, 117, 2420, 2420],
+        name: 'Untranslated',
+        type: 'bar',
+        marker: {color: 'red'},
+        hovertemplate: '%{y} untranslated (%{customdata}%)',
+        customdata: [66, 100, 71, 88, 63, 5, 5, 100, 100]
+      }
+    ];
+
+    const layout = {
+      barmode: 'stack',
+      xaxis: {title: 'Language'},
+      yaxis: {title: 'Number of Entries'},
+      hovermode: 'closest'
+    };
+
+    Plotly.newPlot('chart', data, layout);
+  </script>
 </body>
 </html>
