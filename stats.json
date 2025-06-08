@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-06-08 06:33 UTC",
+  "generated_at": "2025-06-08 12:46 UTC",
   "records": [
     {
       "source": "HAPI FHIR Core libraries",
@@ -53,12 +53,12 @@
       "source": "HAPI FHIR Core libraries",
       "file": "validator-messages",
       "language": "nl",
-      "translated": 1331,
-      "fuzzy": 0,
+      "translated": 1237,
+      "fuzzy": 94,
       "untranslated": 11,
       "total": 1342,
-      "pct_translated": 99.2,
-      "pct_fuzzy": 0.0,
+      "pct_translated": 92.2,
+      "pct_fuzzy": 7.0,
       "pct_untranslated": 0.8
     },
     {
