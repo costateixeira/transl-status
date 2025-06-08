@@ -7,11 +7,11 @@ HAPI FHIR Core libraries,validator-messages,nl,1331,0,11,1342,99.2,0.0,0.8
 HAPI FHIR Core libraries,rendering-phrases,en,0,0,1081,1081,0.0,0.0,100.0
 HAPI FHIR Core libraries,validator-messages,fr,0,0,1342,1342,0.0,0.0,100.0
 HAPI FHIR Core libraries,validator-messages,es,697,0,645,1342,51.9,0.0,48.1
-HAPI FHIR Core libraries,rendering-phrases,pt,954,45,82,1081,88.3,4.2,7.6
+HAPI FHIR Core libraries,rendering-phrases,pt,13,986,82,1081,1.2,91.2,7.6
 HAPI FHIR Core libraries,validator-messages,ja,871,0,471,1342,64.9,0.0,35.1
 HAPI FHIR Core libraries,rendering-phrases,es,5,0,1076,1081,0.5,0.0,99.5
 HAPI FHIR Core libraries,rendering-phrases,ja,20,0,1061,1081,1.9,0.0,98.1
-HAPI FHIR Core libraries,validator-messages,pt,1305,0,37,1342,97.2,0.0,2.8
+HAPI FHIR Core libraries,validator-messages,pt,0,1305,37,1342,0.0,97.2,2.8
 HAPI FHIR Core libraries,validator-messages,ru,0,0,1342,1342,0.0,0.0,100.0
 HAPI FHIR Core libraries,rendering-phrases,ru,1081,0,0,1081,100.0,0.0,0.0
 HAPI FHIR Core libraries,validator-messages,de,823,0,519,1342,61.3,0.0,38.7
