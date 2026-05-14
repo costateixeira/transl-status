@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-14 14:28 UTC",
+  "generated_at": "2026-05-14 19:53 UTC",
   "records": [
     {
       "source": "HAPI FHIR Core libraries",
       "file": "validator-messages",
-      "language": "en",
+      "language": "ko",
       "translated": 0,
       "fuzzy": 0,
       "untranslated": 1478,
@@ -16,31 +16,7 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "ru",
-      "translated": 1079,
-      "fuzzy": 0,
-      "untranslated": 82,
-      "total": 1161,
-      "pct_translated": 92.9,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 7.1
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "rendering-phrases",
-      "language": "ar",
-      "translated": 0,
-      "fuzzy": 1098,
-      "untranslated": 63,
-      "total": 1161,
-      "pct_translated": 0.0,
-      "pct_fuzzy": 94.6,
-      "pct_untranslated": 5.4
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "rendering-phrases",
-      "language": "zh",
+      "language": "uz",
       "translated": 0,
       "fuzzy": 0,
       "untranslated": 1161,
@@ -64,14 +40,14 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "es",
-      "translated": 5,
+      "language": "fr",
+      "translated": 1103,
       "fuzzy": 0,
-      "untranslated": 1156,
+      "untranslated": 58,
       "total": 1161,
-      "pct_translated": 0.4,
+      "pct_translated": 95.0,
       "pct_fuzzy": 0.0,
-      "pct_untranslated": 99.6
+      "pct_untranslated": 5.0
     },
     {
       "source": "HAPI FHIR Core libraries",
@@ -88,19 +64,19 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "pt",
-      "translated": 90,
-      "fuzzy": 929,
-      "untranslated": 142,
+      "language": "ru",
+      "translated": 1079,
+      "fuzzy": 0,
+      "untranslated": 82,
       "total": 1161,
-      "pct_translated": 7.8,
-      "pct_fuzzy": 80.0,
-      "pct_untranslated": 12.2
+      "pct_translated": 92.9,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 7.1
     },
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "uz",
+      "language": "en",
       "translated": 0,
       "fuzzy": 0,
       "untranslated": 1161,
@@ -112,7 +88,7 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "validator-messages",
-      "language": "ru",
+      "language": "en",
       "translated": 0,
       "fuzzy": 0,
       "untranslated": 1478,
@@ -124,38 +100,14 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "ko",
-      "translated": 0,
+      "language": "de",
+      "translated": 5,
       "fuzzy": 0,
-      "untranslated": 1161,
+      "untranslated": 1156,
       "total": 1161,
-      "pct_translated": 0.0,
+      "pct_translated": 0.4,
       "pct_fuzzy": 0.0,
-      "pct_untranslated": 100.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "rendering-phrases",
-      "language": "pt_BR",
-      "translated": 0,
-      "fuzzy": 0,
-      "untranslated": 1106,
-      "total": 1106,
-      "pct_translated": 0.0,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 100.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "validator-messages",
-      "language": "es",
-      "translated": 696,
-      "fuzzy": 0,
-      "untranslated": 782,
-      "total": 1478,
-      "pct_translated": 47.1,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 52.9
+      "pct_untranslated": 99.6
     },
     {
       "source": "HAPI FHIR Core libraries",
@@ -184,14 +136,62 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "fr",
-      "translated": 1103,
+      "language": "zh",
+      "translated": 0,
       "fuzzy": 0,
-      "untranslated": 58,
+      "untranslated": 1161,
       "total": 1161,
-      "pct_translated": 95.0,
+      "pct_translated": 0.0,
       "pct_fuzzy": 0.0,
-      "pct_untranslated": 5.0
+      "pct_untranslated": 100.0
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "validator-messages",
+      "language": "es",
+      "translated": 696,
+      "fuzzy": 0,
+      "untranslated": 782,
+      "total": 1478,
+      "pct_translated": 47.1,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 52.9
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "rendering-phrases",
+      "language": "es",
+      "translated": 5,
+      "fuzzy": 0,
+      "untranslated": 1156,
+      "total": 1161,
+      "pct_translated": 0.4,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 99.6
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "rendering-phrases",
+      "language": "pt",
+      "translated": 90,
+      "fuzzy": 929,
+      "untranslated": 142,
+      "total": 1161,
+      "pct_translated": 7.8,
+      "pct_fuzzy": 80.0,
+      "pct_untranslated": 12.2
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "validator-messages",
+      "language": "zh",
+      "translated": 0,
+      "fuzzy": 0,
+      "untranslated": 1478,
+      "total": 1478,
+      "pct_translated": 0.0,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 100.0
     },
     {
       "source": "HAPI FHIR Core libraries",
@@ -207,12 +207,72 @@
     },
     {
       "source": "HAPI FHIR Core libraries",
+      "file": "rendering-phrases",
+      "language": "nl",
+      "translated": 962,
+      "fuzzy": 0,
+      "untranslated": 199,
+      "total": 1161,
+      "pct_translated": 82.9,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 17.1
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
       "file": "validator-messages",
-      "language": "zh",
+      "language": "fr",
       "translated": 0,
       "fuzzy": 0,
       "untranslated": 1478,
       "total": 1478,
+      "pct_translated": 0.0,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 100.0
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "validator-messages",
+      "language": "nl",
+      "translated": 1232,
+      "fuzzy": 94,
+      "untranslated": 152,
+      "total": 1478,
+      "pct_translated": 83.4,
+      "pct_fuzzy": 6.4,
+      "pct_untranslated": 10.3
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "rendering-phrases",
+      "language": "ar",
+      "translated": 0,
+      "fuzzy": 1098,
+      "untranslated": 63,
+      "total": 1161,
+      "pct_translated": 0.0,
+      "pct_fuzzy": 94.6,
+      "pct_untranslated": 5.4
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "validator-messages",
+      "language": "ru",
+      "translated": 0,
+      "fuzzy": 0,
+      "untranslated": 1478,
+      "total": 1478,
+      "pct_translated": 0.0,
+      "pct_fuzzy": 0.0,
+      "pct_untranslated": 100.0
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "rendering-phrases",
+      "language": "ko",
+      "translated": 0,
+      "fuzzy": 0,
+      "untranslated": 1161,
+      "total": 1161,
       "pct_translated": 0.0,
       "pct_fuzzy": 0.0,
       "pct_untranslated": 100.0
@@ -232,86 +292,14 @@
     {
       "source": "HAPI FHIR Core libraries",
       "file": "rendering-phrases",
-      "language": "de",
-      "translated": 5,
-      "fuzzy": 0,
-      "untranslated": 1156,
-      "total": 1161,
-      "pct_translated": 0.4,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 99.6
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "validator-messages",
-      "language": "fr",
+      "language": "pt_BR",
       "translated": 0,
       "fuzzy": 0,
-      "untranslated": 1478,
-      "total": 1478,
+      "untranslated": 1106,
+      "total": 1106,
       "pct_translated": 0.0,
       "pct_fuzzy": 0.0,
       "pct_untranslated": 100.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "validator-messages",
-      "language": "ko",
-      "translated": 0,
-      "fuzzy": 0,
-      "untranslated": 1478,
-      "total": 1478,
-      "pct_translated": 0.0,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 100.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "rendering-phrases",
-      "language": "en",
-      "translated": 0,
-      "fuzzy": 0,
-      "untranslated": 1161,
-      "total": 1161,
-      "pct_translated": 0.0,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 100.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "validator-messages",
-      "language": "pt",
-      "translated": 14,
-      "fuzzy": 1287,
-      "untranslated": 177,
-      "total": 1478,
-      "pct_translated": 0.9,
-      "pct_fuzzy": 87.1,
-      "pct_untranslated": 12.0
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "rendering-phrases",
-      "language": "nl",
-      "translated": 962,
-      "fuzzy": 0,
-      "untranslated": 199,
-      "total": 1161,
-      "pct_translated": 82.9,
-      "pct_fuzzy": 0.0,
-      "pct_untranslated": 17.1
-    },
-    {
-      "source": "HAPI FHIR Core libraries",
-      "file": "validator-messages",
-      "language": "nl",
-      "translated": 1232,
-      "fuzzy": 94,
-      "untranslated": 152,
-      "total": 1478,
-      "pct_translated": 83.4,
-      "pct_fuzzy": 6.4,
-      "pct_untranslated": 10.3
     },
     {
       "source": "HAPI FHIR Core libraries",
@@ -324,6 +312,18 @@
       "pct_translated": 58.7,
       "pct_fuzzy": 0.0,
       "pct_untranslated": 41.3
+    },
+    {
+      "source": "HAPI FHIR Core libraries",
+      "file": "validator-messages",
+      "language": "pt",
+      "translated": 14,
+      "fuzzy": 1287,
+      "untranslated": 177,
+      "total": 1478,
+      "pct_translated": 0.9,
+      "pct_fuzzy": 87.1,
+      "pct_untranslated": 12.0
     }
   ]
 }
